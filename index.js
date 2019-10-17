@@ -5,11 +5,23 @@ const port = 3000;
 const db = require('./queries');
 const path = require('path');
 let session = require('express-session');
+const redis = require('redis');
+let client = redis.createClient();
+let redisStore = require('connect-redis')(session);
+// import MyComponent from './component';
+// import './app';
+// import './MyComponent';
 
 app.use(session({
 	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
+	resave: false,
+    saveUninitialized: false,
+    store: new redisStore({
+        host: 'localhost',
+        port: 6379,
+        client: client,
+        ttl: 30
+    })
 }));
 app.use(bodyParser.json())
 app.use(
@@ -27,6 +39,9 @@ app.get('/', (request, response) => {
 })
 app.get('/register', (request, response) => {
     response.sendFile(path.join(__dirname + '/register.html'))
+})
+app.get('/component', (request, response) => {
+    response.sendFile(path.join(__dirname + '/status.html'))
 })
 app.get('/users', db.getUsers)
 app.get('/users/:id', db.getUserById)
