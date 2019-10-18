@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template</title>
+    <script src="/script/fb-template.js" defer></script>
+</head>
+<body>
+
+    <template id="fb-from-template">
+        <style></style>
+        <div>
+            <slot name="login"></slot>
+        </div>
+        <div>
+            <slot name="register"></slot>
+        </div>
+    </template>
+
+    <template id="x-from-login">
+        <style></style>
+        <form  action="#" method="POST">
+            <input type="text" name="email" id="email">
+            <input type="text" name="password" id="password">
+            <input type="submit" value="login">
+            </form>
+    </template>
+        
+    <template id="x-from-birthday">
+        <style></style>
+        <div>
+            <label for="birthday">Birthday</label>
+            <select name="day" id="day"></select>
+            <select name="month" id="month"></select>
+            <select name="year" id="year"></select>
+            </div>
+    </template>
+        
+
+    <template id="x-from-gender">
+        <style></style>
+        <div>
+            <label for="gender">Gender</label>
+            <input type="radio" name="male" id="male" value="male">
+            <input type="radio" name="female" id="female" value="female">
+        </div>
+    </template>
+        
+
+    <template id="x-from-register">
+        <style></style>
+        <slot></slot>
+        <form action="#" method="POST">
+            <input type="text" name="firstName" id="firstName">
+            <input type="text" name="lastName" id="lastName">
+            <input type="text" name="email" id="email">
+            <input type="password" name="password" id="password">   
+            <input type="submit" value="register">
+        </form>
+    </template>
+        
+     
+    <x-fb-template>
+        <x-login slot="login"></x-login>
+        <x-register slot="register">
+            <!-- <x-birthday></x-birthday>
+            <x-gender></x-gender> -->
+        </x-register>
+    </x-fb-template>
+    
+</body>
+</html>

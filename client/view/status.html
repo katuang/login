@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <script src="MyComponent.js" type="module"></script> -->
-    <script src="/script/app.js"></script>
-    <!-- <script src="/script/my-component.js"></script> -->
+    <title>component</title>
+    
+    <!-- <script src="/script/app.js"></script> -->
+    
+    <script src="/script/login-form.js"></script>
+    <script src="/script/x-foo.js"></script>
+    <script src="/script/x-foo-template.js" defer></script>
+    <!-- <style>
+        p { color:red; }
+    </style> -->
 </head>
 <body>
-    <!-- <script src="component.js"></script> -->
-    <!-- button -->
-    <!-- <my-component></my-component> -->
-    <!-- <h1>hello</h1> -->
-    <!-- <main>
 
-    </main> -->
-    <!-- <button>tekan</button> -->
-    <!-- <script src="app.js" type="module"></script> -->
-    <!-- <my-component></my-component> -->
+    <template id="x-foo-from-template">
+        <style>
+            p { color: green; }
+            ::slotted(p) { color: brown; }
+        </style>
+        <slot></slot>
+        <p>I'm in shadow DOM. My markup was stamped from a &lt;template&gt;.</p>
+    </template>
     
+    <x-foo-template>
+        <p>hello</p>
+    </x-foo-template>
+    <!-- <script src="/script/x-foo-template.js"></script> -->
 </body>
 </html>
