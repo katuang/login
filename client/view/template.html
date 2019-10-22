@@ -10,65 +10,186 @@
 <body>
 
     <template id="fb-from-template">
-        <style></style>
-        <div>
-            <slot name="login"></slot>
+        <style>
+            .container-template {
+                display: grid;
+                grid-template-columns: auto auto;
+                background: blue;
+            }
+
+            .login {
+                color: crimson;
+            }
+
+            .register {
+                color: darkmagenta;
+            }
+        </style>
+        <div class="container-template">
+            <slot name="login" class="login"></slot>
+            <slot name="register" class="register"></slot>
         </div>
-        <div>
-            <slot name="register"></slot>
-        </div>
+        <!-- <slot name="login" id="login"></slot> -->
+        <!-- <div class="container-register">
+            <slot name="register" class="register"></slot>
+        </div> -->
     </template>
 
     <template id="x-from-login">
-        <style></style>
-        <form  action="#" method="POST">
-            <input type="text" name="email" id="email">
-            <input type="text" name="password" id="password">
-            <input type="submit" value="login">
+        <style>
+            .container {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                /* border-bottom: blue solid; */
+                
+            }
+
+            #username {
+                border-style: solid;
+                border-radius: 8px;
+                height: 20px;
+                width: 200px;
+            }
+
+            #password {
+                border-style: solid;
+                border-radius: 8px;
+                height: 20px;
+                width: 200px;
+            }
+
+            #login {
+                height: 25px;
+                
+            }
+        </style>
+        <div class="container">
+            <form action="/auth" method="POST">
+                <input type="text" name="username" id="username">
+                <input type="text" name="password" id="password">
+                <input type="submit" value="Login" id="login">
             </form>
+        </div>
     </template>
         
     <template id="x-from-birthday">
-        <style></style>
-        <div>
+        <style>
+            .container {
+                margin: 5px;
+            }
+        </style>
+        <div class="container">
             <label for="birthday">Birthday</label>
-            <select name="day" id="day"></select>
-            <select name="month" id="month"></select>
-            <select name="year" id="year"></select>
-            </div>
+            <select name="day" id="day">
+                
+            </select>
+            <select name="month" id="month">
+
+            </select>
+            <select name="year" id="year">
+
+            </select>
+        </div>
     </template>
         
 
     <template id="x-from-gender">
-        <style></style>
-        <div>
-            <label for="gender">Gender</label>
-            <input type="radio" name="male" id="male" value="male">
-            <input type="radio" name="female" id="female" value="female">
+        <style>
+            .container {
+                margin: 5px;
+            }
+        </style>
+        <div class="container">
+            <!-- <label for="gender">Gender</label>
+            <br> -->
+            <input type="radio" name="male" id="male" value="male">Male
+            <input type="radio" name="female" id="female" value="female">Female
         </div>
     </template>
         
 
     <template id="x-from-register">
-        <style></style>
-        <slot></slot>
-        <form action="#" method="POST">
+        <style>
+            .container {
+                position: absolute;
+                display: grid;
+                grid-template-columns: auto auto;
+                top: 100px;
+                right: 40px;
+                row-gap: 5px;
+                column-gap: 2px;
+                margin: 10px;
+                
+                
+            }
+
+            #email {
+                
+                grid-column: 1 / 3;
+            }
+
+            #password {
+                
+                grid-column: 1 / 3;
+            }
+
+            #firstname {
+                
+            }
+
+            #lastname {
+                
+            }
+
+            #slot {
+                margin: 2px;
+                grid-column: 1 / 3;
+            }
+
+            P {
+                position: absolute;
+                top: 70px;
+                right: 400px;
+            }
+
+            #regis {
+                width: 80px;
+            }
+        </style>
+        
+        <p>REGISTER</p>
+        <form action="#" method="POST" class="container">
+                
             <input type="text" name="firstName" id="firstName">
+                
+                
             <input type="text" name="lastName" id="lastName">
+                
+                
             <input type="text" name="email" id="email">
-            <input type="password" name="password" id="password">   
-            <input type="submit" value="register">
+                
+            
+            <input type="password" name="password" id="password">
+                
+                <slot id="slot"></slot>   
+            <input type="submit" value="Register" id="regis">
         </form>
+        
     </template>
         
      
     <x-fb-template>
         <x-login slot="login"></x-login>
         <x-register slot="register">
-            <!-- <x-birthday></x-birthday>
-            <x-gender></x-gender> -->
+            <x-birthday></x-birthday>
+            <x-gender></x-gender>
         </x-register>
+        <!-- <h1 slot="login">hello</h1>
+        <h1 slot="register">halo</h1> -->
     </x-fb-template>
+    <!-- <xy-regis></xy-regis> -->
+    <!-- <x-gender></x-gender> -->
     
 </body>
 </html>
